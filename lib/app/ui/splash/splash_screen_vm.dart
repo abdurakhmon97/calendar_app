@@ -25,4 +25,9 @@ class SplashScreenViewModel {
   }
 
   MediaQueryData getQueryData(BuildContext context) => MediaQuery.of(context);
+
+  void dispose() {
+    lottieAnimation.dispose();
+    expanded.dispose();
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:calendar_app/app/navigation/app_route_factory.dart';
+import 'package:calendar_app/core/constants/colors.dart';
 import 'package:calendar_app/core/di/di_container.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,10 @@ class MyApp extends StatelessWidget {
         title: "Calendar App",
         debugShowCheckedModeBanner: false,
         routerConfig: appRouter,
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.bgColor,
+          primaryColor: AppColors.primaryColor,
+        ),
       ),
     );
   }

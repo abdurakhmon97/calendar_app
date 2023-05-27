@@ -28,7 +28,7 @@ class DatabaseHelper {
 
   static FutureOr<void> _onCreate(Database db, _) async {
     await db.execute(
-        '''CREATE TABLE $_tableName (id STRING PRIMARY KEY autoincrement, 
+        '''CREATE TABLE $_tableName (id INTEGER PRIMARY KEY autoincrement, 
         name STRING,
         description STRING,
         location STRING,
