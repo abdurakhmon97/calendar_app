@@ -1,7 +1,11 @@
 import 'package:calendar_app/app/navigation/app_route_factory.dart';
+import 'package:calendar_app/core/di/di_container.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await disposeDi();
+  await initDi();
   runApp(const MyApp());
 }
 
