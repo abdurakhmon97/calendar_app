@@ -6,7 +6,7 @@ const _notSpecified = 'Not specified';
 extension EventDetailsEntityExt on EventDetails {
   EventDetailsEntity toEntity() {
     return EventDetailsEntity(
-      id: id ?? -1,
+      id: id,
       name: name ?? _notSpecified,
       startTime: DateTime.tryParse(startTime ?? '') ?? DateTime.now(),
       endTime: DateTime.tryParse(endTime ?? '') ?? DateTime.now(),

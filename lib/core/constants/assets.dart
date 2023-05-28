@@ -11,6 +11,7 @@ class AppIcons {
   static const arrowRight = '$_icons/ic_arrow_right.svg';
   static const location = '$_icons/ic_location.svg';
   static const time = '$_icons/ic_time.svg';
+  static const chevronDown = '$_icons/ic_chevron_down.svg';
 }
 
 class AppImages {

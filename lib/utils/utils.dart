@@ -1,3 +1,6 @@
+import 'package:calendar_app/core/constants/colors.dart';
+import 'package:flutter/material.dart';
+
 class AppUtils {
   AppUtils._();
 
@@ -15,5 +18,15 @@ class AppUtils {
     return first.year == second.year &&
         first.month == second.month &&
         first.day == second.day;
+  }
+
+  static void showSnackBar(BuildContext context, String title,
+      [Color bgColor = AppColors.success]) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+        title,
+      ),
+      backgroundColor: bgColor,
+    ));
   }
 }

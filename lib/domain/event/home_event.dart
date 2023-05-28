@@ -12,3 +12,8 @@ class HomeSelectDayEvent extends HomeEvent {
   @override
   List<Object> get props => [newSelectedDay];
 }
+
+class HomeExceedingRangeEvent extends HomeEvent {
+  @override
+  List<Object> get props => [];
+}

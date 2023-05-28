@@ -64,6 +64,9 @@ dependencies:
   #icons
   flutter_svg: ^2.0.5
 
+  #font family
+  google_fonts: ^4.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

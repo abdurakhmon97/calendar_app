@@ -1,5 +1,6 @@
 import 'package:calendar_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTypography {
   const AppTypography._();
@@ -59,4 +60,22 @@ class AppTypography {
     color: AppColors.primaryText,
     fontWeight: FontWeight.w500,
   );
+
+  static final body2 = TextStyle(
+    fontSize: 14,
+    height: 20 / 14,
+    color: AppColors.robotoPrimaryText,
+    fontWeight: FontWeight.w400,
+    fontFamily: GoogleFonts.roboto().fontFamily,
+  );
+
+  static final body1 = TextStyle(
+    fontSize: 16,
+    height: 24 / 16,
+    color: AppColors.robotoPrimaryText,
+    fontWeight: FontWeight.w400,
+    fontFamily: GoogleFonts.roboto().fontFamily,
+  );
+
+  static final body1White = body1.copyWith(color: AppColors.contrastWhite);
 }

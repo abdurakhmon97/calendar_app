@@ -7,7 +7,7 @@ class EventHeader extends StatelessWidget {
     Key? key,
     required this.onAddEvent,
   }) : super(key: key);
-  final VoidCallback onAddEvent;
+  final Function(BuildContext) onAddEvent;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class EventHeader extends StatelessWidget {
             style: AppTypography.textSemiBoldWhite,
           ),
           borderRadius: 10,
-          onPressed: () {},
+          onPressed: () => onAddEvent(context),
           height: 30,
           padding: const EdgeInsets.symmetric(horizontal: 22),
         ),

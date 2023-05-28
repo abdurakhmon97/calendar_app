@@ -4,70 +4,48 @@ import 'package:calendar_app/domain/entities/event_details_entity.dart';
 import 'package:flutter/material.dart';
 
 class EventsList extends StatelessWidget {
-  const EventsList({Key? key}) : super(key: key);
+  const EventsList({
+    Key? key,
+    required this.events,
+    required this.onAddEvent,
+  }) : super(key: key);
+
+  final List<EventDetailsEntity> events;
+  final Function(BuildContext) onAddEvent;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        EventHeader(onAddEvent: () {}),
+        EventHeader(onAddEvent: onAddEvent),
         const SizedBox(height: 18),
-        SingleEvent(
-          eventDetailsEntity: EventDetailsEntity(
-              id: 1,
-              name: 'Watching Football ',
-              startTime: DateTime(2023),
-              endTime: DateTime(2023),
-              location: 'Stamford Bridge',
-              priorityColor: 0,
-              description: 'Manchester United vs Arsenal (Premiere League)',
-              reminder: 10,
-              date: DateTime.now()),
-          onEventTap: () {},
+        Expanded(
+          child: ListView.builder(
+            itemBuilder: (_, index) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SingleEvent(
+                    eventDetailsEntity: EventDetailsEntity(
+                        id: 1,
+                        name: 'Watching Football ',
+                        startTime: DateTime(2023),
+                        endTime: DateTime(2023),
+                        location: 'Stamford Bridge',
+                        priorityColor: 0,
+                        description:
+                            'Manchester United vs Arsenal (Premiere League)',
+                        reminder: 10,
+                        date: DateTime.now()),
+                    onEventTap: () {},
+                  ),
+                  if (index < events.length - 1) const SizedBox(height: 14),
+                ],
+              );
+            },
+            itemCount: events.length,
+          ),
         ),
-        const SizedBox(height: 14),
-        SingleEvent(
-          eventDetailsEntity: EventDetailsEntity(
-              id: 1,
-              name: 'Watching Football ',
-              startTime: DateTime(2023),
-              endTime: DateTime(2023),
-              location: 'Stamford Bridge',
-              priorityColor: 1,
-              description: 'Manchester United vs Arsenal (Premiere League)',
-              reminder: 10,
-              date: DateTime.now()),
-          onEventTap: () {},
-        ),
-        const SizedBox(height: 14),
-        SingleEvent(
-          eventDetailsEntity: EventDetailsEntity(
-              id: 1,
-              name: 'Watching Football ',
-              startTime: DateTime(2023),
-              endTime: DateTime(2023),
-              location: 'Stamford Bridge',
-              priorityColor: 2,
-              description: 'Manchester United vs Arsenal (Premiere League)',
-              reminder: 10,
-              date: DateTime.now()),
-          onEventTap: () {},
-        ),
-        const SizedBox(height: 14),
-        SingleEvent(
-          eventDetailsEntity: EventDetailsEntity(
-              id: 1,
-              name: 'Watching Football ',
-              startTime: DateTime(2023),
-              endTime: DateTime(2023),
-              location: 'Stamford Bridge',
-              priorityColor: 2,
-              description: 'Manchester United vs Arsenal (Premiere League)',
-              reminder: 10,
-              date: DateTime.now()),
-          onEventTap: () {},
-        ),
-        const SizedBox(height: 14),
       ],
     );
   }

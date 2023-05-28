@@ -19,11 +19,12 @@ class DatabaseHelper {
       dbPath,
       'calendar_app.db',
     );
-    return await openDatabase(
+    _database = await openDatabase(
       path,
       version: 1,
       onCreate: _onCreate,
     );
+    return _database!;
   }
 
   static FutureOr<void> _onCreate(Database db, _) async {

@@ -47,16 +47,13 @@ class CalendarBody extends StatelessWidget {
         if ((index - weekdayLength) < skipGrid) {
           return const SizedBox.shrink();
         }
+        final currentDay = focusedMonthDays[index - (weekdayLength + skipGrid)];
         return GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => onSelectDay(
-              context, focusedMonthDays[index - (weekdayLength + skipGrid)]),
+          onTap: () => onSelectDay(context, currentDay),
           child: CellBuilder(
-            day: focusedMonthDays[index - (weekdayLength + skipGrid)],
-            isChosen: AppUtils.isSameDay(
-              focusedMonthDays[index - (weekdayLength + skipGrid)],
-              selectedDay,
-            ),
+            day: currentDay,
+            isChosen: AppUtils.isSameDay(currentDay, selectedDay),
             events: [entity, entity, entity],
           ),
         );

@@ -1,4 +1,7 @@
+import 'dart:developer';
+import 'package:calendar_app/data/mappers/event_details_mapper.dart';
 import 'package:calendar_app/data/storage/db_helper.dart';
+import 'package:calendar_app/domain/entities/event_details_entity.dart';
 import 'package:calendar_app/domain/repositories/events_repository.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,5 +12,17 @@ class EventsRepositoryImpl implements EventsRepository {
   final DatabaseHelper _databaseHelper;
 
   @override
-  Future<void> getEventsByDay(String day) async {}
+  Future<List<EventDetailsEntity>> getEventsByDay(DateTime day) async {
+    try {
+      List<EventDetailsEntity> result = [];
+      final rawList = await _databaseHelper.getEventsByDay(day);
+      for (final rawEvent in rawList) {
+        result.add(rawEvent.toEntity());
+      }
+      return result;
+    } on Object catch (e) {
+      log(e.toString());
+      return [];
+    }
+  }
 }
