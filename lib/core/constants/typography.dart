@@ -43,6 +43,9 @@ class AppTypography {
     fontWeight: FontWeight.w500,
   );
 
+  static final caption2White =
+      caption2.copyWith(color: AppColors.contrastWhite);
+
   static final TextStyle caption2SemiBold = caption2.copyWith(
     fontWeight: FontWeight.w600,
   );
@@ -61,6 +64,9 @@ class AppTypography {
     fontWeight: FontWeight.w500,
   );
 
+  static final title3Secondary =
+      title3.copyWith(color: AppColors.secondaryText);
+
   static final body2 = TextStyle(
     fontSize: 14,
     height: 20 / 14,
@@ -78,4 +84,8 @@ class AppTypography {
   );
 
   static final body1White = body1.copyWith(color: AppColors.contrastWhite);
+
+  static final body1SemiBold = body1.copyWith(fontWeight: FontWeight.w600);
+
+  static final body1SemiBoldWhite = body1SemiBold.copyWith(color: AppColors.contrastWhite);
 }

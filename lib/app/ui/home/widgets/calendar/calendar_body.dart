@@ -1,11 +1,10 @@
 import 'package:calendar_app/app/ui/home/widgets/calendar/cell_builder.dart';
 import 'package:calendar_app/core/constants/typography.dart';
-import 'package:calendar_app/domain/entities/event_details_entity.dart';
 import 'package:calendar_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class CalendarBody extends StatelessWidget {
-  CalendarBody({
+  const CalendarBody({
     Key? key,
     required this.focusedMonthDays,
     required this.selectedDay,
@@ -54,22 +53,9 @@ class CalendarBody extends StatelessWidget {
           child: CellBuilder(
             day: currentDay,
             isChosen: AppUtils.isSameDay(currentDay, selectedDay),
-            events: [entity, entity, entity],
           ),
         );
       },
     );
   }
-
-  EventDetailsEntity entity = EventDetailsEntity(
-    id: 1,
-    name: 'name',
-    startTime: DateTime.now(),
-    endTime: DateTime.now(),
-    location: 'location',
-    priorityColor: 1,
-    description: 'description',
-    reminder: 1,
-    date: DateTime.now(),
-  );
 }

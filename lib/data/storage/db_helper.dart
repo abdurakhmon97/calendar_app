@@ -35,8 +35,7 @@ class DatabaseHelper {
         location STRING,
         reminder INTEGER,
         priorityColor INTEGER,
-        startTime STRING,
-        endTime STRING,
+        time STRING,
         date String
       )''');
   }
@@ -55,11 +54,10 @@ class DatabaseHelper {
   }
 
   Future<int?> insert({
-    required String table,
     required EventDetails eventDetails,
   }) async =>
       await _database!.insert(
-        table,
+        _tableName,
         eventDetails.toJson(),
       );
 

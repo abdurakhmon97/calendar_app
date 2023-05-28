@@ -8,10 +8,12 @@ class EventsList extends StatelessWidget {
     Key? key,
     required this.events,
     required this.onAddEvent,
+    required this.onEditEvent,
   }) : super(key: key);
 
   final List<EventDetailsEntity> events;
   final Function(BuildContext) onAddEvent;
+  final Function(BuildContext, EventDetailsEntity) onEditEvent;
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +28,8 @@ class EventsList extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SingleEvent(
-                    eventDetailsEntity: EventDetailsEntity(
-                        id: 1,
-                        name: 'Watching Football ',
-                        startTime: DateTime(2023),
-                        endTime: DateTime(2023),
-                        location: 'Stamford Bridge',
-                        priorityColor: 0,
-                        description:
-                            'Manchester United vs Arsenal (Premiere League)',
-                        reminder: 10,
-                        date: DateTime.now()),
-                    onEventTap: () {},
+                    eventDetailsEntity: events[index],
+                    onEventTap: () => onEditEvent(context, events[index]),
                   ),
                   if (index < events.length - 1) const SizedBox(height: 14),
                 ],

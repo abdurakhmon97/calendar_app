@@ -9,10 +9,9 @@ class EventDetails with _$EventDetails {
   const factory EventDetails({
     int? id,
     String? name,
-    String? startTime,
+    String? time,
     String? location,
     int? priorityColor,
-    String? endTime,
     String? description,
     int? reminder,
     String? date,

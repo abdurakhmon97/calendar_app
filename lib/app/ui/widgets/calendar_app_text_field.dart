@@ -8,8 +8,10 @@ class CalendarAppTextField extends StatelessWidget {
     required this.title,
     required this.controller,
     this.readOnly = false,
-    this.suffixIcon,
     this.minLines = 1,
+    this.textInputType = TextInputType.text,
+    this.textInputAction = TextInputAction.next,
+    this.suffixIcon,
     this.onTap,
   }) : super(key: key);
 
@@ -19,6 +21,8 @@ class CalendarAppTextField extends StatelessWidget {
   final int minLines;
   final bool readOnly;
   final VoidCallback? onTap;
+  final TextInputType textInputType;
+  final TextInputAction textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,9 @@ class CalendarAppTextField extends StatelessWidget {
           style: AppTypography.body2,
           minLines: minLines,
           maxLines: minLines,
+          keyboardType: textInputType,
           textCapitalization: TextCapitalization.sentences,
+          textInputAction: TextInputAction.next,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 9,

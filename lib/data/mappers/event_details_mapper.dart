@@ -1,20 +1,17 @@
 import 'package:calendar_app/data/model/event_details.dart';
 import 'package:calendar_app/domain/entities/event_details_entity.dart';
 
-const _notSpecified = 'Not specified';
-
 extension EventDetailsEntityExt on EventDetails {
   EventDetailsEntity toEntity() {
     return EventDetailsEntity(
       id: id,
-      name: name ?? _notSpecified,
-      startTime: DateTime.tryParse(startTime ?? '') ?? DateTime.now(),
-      endTime: DateTime.tryParse(endTime ?? '') ?? DateTime.now(),
-      location: location ?? _notSpecified,
+      name: name ?? '',
+      time: time ?? '',
+      location: location ?? '',
       priorityColor: priorityColor ?? 0,
-      description: description ?? _notSpecified,
+      description: description ?? '',
       reminder: reminder ?? 0,
-      date: DateTime.tryParse(endTime ?? '') ?? DateTime.now(),
+      date: date ?? '',
     );
   }
 }
@@ -24,13 +21,12 @@ extension EventDetailsRawExt on EventDetailsEntity {
     return EventDetails(
       id: id,
       name: name,
-      startTime: startTime.toString(),
-      endTime: endTime.toString(),
+      time: time,
       location: location,
       priorityColor: priorityColor,
       description: description,
       reminder: reminder,
-      date: date.toString(),
+      date: date,
     );
   }
 }

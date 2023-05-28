@@ -22,10 +22,9 @@ EventDetails _$EventDetailsFromJson(Map<String, dynamic> json) {
 mixin _$EventDetails {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get startTime => throw _privateConstructorUsedError;
+  String? get time => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   int? get priorityColor => throw _privateConstructorUsedError;
-  String? get endTime => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get reminder => throw _privateConstructorUsedError;
   String? get date => throw _privateConstructorUsedError;
@@ -45,10 +44,9 @@ abstract class $EventDetailsCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
-      String? startTime,
+      String? time,
       String? location,
       int? priorityColor,
-      String? endTime,
       String? description,
       int? reminder,
       String? date});
@@ -69,10 +67,9 @@ class _$EventDetailsCopyWithImpl<$Res, $Val extends EventDetails>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? startTime = freezed,
+    Object? time = freezed,
     Object? location = freezed,
     Object? priorityColor = freezed,
-    Object? endTime = freezed,
     Object? description = freezed,
     Object? reminder = freezed,
     Object? date = freezed,
@@ -86,9 +83,9 @@ class _$EventDetailsCopyWithImpl<$Res, $Val extends EventDetails>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
               as String?,
       location: freezed == location
           ? _value.location
@@ -98,10 +95,6 @@ class _$EventDetailsCopyWithImpl<$Res, $Val extends EventDetails>
           ? _value.priorityColor
           : priorityColor // ignore: cast_nullable_to_non_nullable
               as int?,
-      endTime: freezed == endTime
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -129,10 +122,9 @@ abstract class _$$_EventDetailsCopyWith<$Res>
   $Res call(
       {int? id,
       String? name,
-      String? startTime,
+      String? time,
       String? location,
       int? priorityColor,
-      String? endTime,
       String? description,
       int? reminder,
       String? date});
@@ -151,10 +143,9 @@ class __$$_EventDetailsCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? startTime = freezed,
+    Object? time = freezed,
     Object? location = freezed,
     Object? priorityColor = freezed,
-    Object? endTime = freezed,
     Object? description = freezed,
     Object? reminder = freezed,
     Object? date = freezed,
@@ -168,9 +159,9 @@ class __$$_EventDetailsCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
               as String?,
       location: freezed == location
           ? _value.location
@@ -180,10 +171,6 @@ class __$$_EventDetailsCopyWithImpl<$Res>
           ? _value.priorityColor
           : priorityColor // ignore: cast_nullable_to_non_nullable
               as int?,
-      endTime: freezed == endTime
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -206,10 +193,9 @@ class _$_EventDetails implements _EventDetails {
   const _$_EventDetails(
       {this.id,
       this.name,
-      this.startTime,
+      this.time,
       this.location,
       this.priorityColor,
-      this.endTime,
       this.description,
       this.reminder,
       this.date});
@@ -222,13 +208,11 @@ class _$_EventDetails implements _EventDetails {
   @override
   final String? name;
   @override
-  final String? startTime;
+  final String? time;
   @override
   final String? location;
   @override
   final int? priorityColor;
-  @override
-  final String? endTime;
   @override
   final String? description;
   @override
@@ -238,7 +222,7 @@ class _$_EventDetails implements _EventDetails {
 
   @override
   String toString() {
-    return 'EventDetails(id: $id, name: $name, startTime: $startTime, location: $location, priorityColor: $priorityColor, endTime: $endTime, description: $description, reminder: $reminder, date: $date)';
+    return 'EventDetails(id: $id, name: $name, time: $time, location: $location, priorityColor: $priorityColor, description: $description, reminder: $reminder, date: $date)';
   }
 
   @override
@@ -248,13 +232,11 @@ class _$_EventDetails implements _EventDetails {
             other is _$_EventDetails &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.startTime, startTime) ||
-                other.startTime == startTime) &&
+            (identical(other.time, time) || other.time == time) &&
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.priorityColor, priorityColor) ||
                 other.priorityColor == priorityColor) &&
-            (identical(other.endTime, endTime) || other.endTime == endTime) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.reminder, reminder) ||
@@ -264,8 +246,8 @@ class _$_EventDetails implements _EventDetails {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, startTime, location,
-      priorityColor, endTime, description, reminder, date);
+  int get hashCode => Object.hash(runtimeType, id, name, time, location,
+      priorityColor, description, reminder, date);
 
   @JsonKey(ignore: true)
   @override
@@ -285,10 +267,9 @@ abstract class _EventDetails implements EventDetails {
   const factory _EventDetails(
       {final int? id,
       final String? name,
-      final String? startTime,
+      final String? time,
       final String? location,
       final int? priorityColor,
-      final String? endTime,
       final String? description,
       final int? reminder,
       final String? date}) = _$_EventDetails;
@@ -301,13 +282,11 @@ abstract class _EventDetails implements EventDetails {
   @override
   String? get name;
   @override
-  String? get startTime;
+  String? get time;
   @override
   String? get location;
   @override
   int? get priorityColor;
-  @override
-  String? get endTime;
   @override
   String? get description;
   @override

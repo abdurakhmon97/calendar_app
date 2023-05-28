@@ -16,6 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           events: const [],
         )) {
     on<HomeSelectDayEvent>(_onDaySelected);
+    on<HomeChangeMonthEvent>(_onChangeMonth);
     on<HomeExceedingRangeEvent>(_onRangeExceeded);
   }
 
@@ -34,5 +35,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onRangeExceeded(
       HomeExceedingRangeEvent event, Emitter<HomeState> emit) {
     emit(HomeExceedingRangeState());
+  }
+
+  FutureOr<void> _onChangeMonth(
+      HomeChangeMonthEvent event, Emitter<HomeState> emit) async {
+    emit(HomeChangeMonthState(newMonth: event.newFocusedMonth));
   }
 }

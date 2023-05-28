@@ -25,4 +25,14 @@ class EventsRepositoryImpl implements EventsRepository {
       return [];
     }
   }
+
+  @override
+  Future<void> createNewEvent(EventDetailsEntity eventDetailsEntity) async {
+    try {
+      await _databaseHelper.insert(
+          eventDetails: eventDetailsEntity.toRawData());
+    } on Object catch (e) {
+      log(e.toString());
+    }
+  }
 }

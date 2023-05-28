@@ -13,6 +13,15 @@ class HomeSelectDayEvent extends HomeEvent {
   List<Object> get props => [newSelectedDay];
 }
 
+class HomeChangeMonthEvent extends HomeEvent {
+  final DateTime newFocusedMonth;
+
+  const HomeChangeMonthEvent(this.newFocusedMonth);
+
+  @override
+  List<Object> get props => [newFocusedMonth];
+}
+
 class HomeExceedingRangeEvent extends HomeEvent {
   @override
   List<Object> get props => [];

@@ -2,19 +2,17 @@ import 'package:equatable/equatable.dart';
 
 class EventDetailsEntity with EquatableMixin {
   final String name;
-  final DateTime startTime;
-  final DateTime endTime;
+  final String time;
   final String location;
   final int priorityColor;
   final String description;
   final int reminder;
-  final DateTime date;
+  final String date;
   final int? id;
 
   const EventDetailsEntity({
     required this.name,
-    required this.startTime,
-    required this.endTime,
+    required this.time,
     required this.location,
     required this.priorityColor,
     required this.description,
@@ -26,8 +24,7 @@ class EventDetailsEntity with EquatableMixin {
   @override
   List<Object?> get props => [
         name,
-        startTime,
-        endTime,
+        time,
         location,
         priorityColor,
         description,

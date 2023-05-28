@@ -8,15 +8,19 @@ class PriorityColorBuilder extends StatefulWidget {
   const PriorityColorBuilder({
     Key? key,
     required this.onColorPicked,
+    required this.predefinedColorIndex,
   }) : super(key: key);
+
   final Function(int) onColorPicked;
+  final int predefinedColorIndex;
 
   @override
   State<PriorityColorBuilder> createState() => _PriorityColorBuilderState();
 }
 
 class _PriorityColorBuilderState extends State<PriorityColorBuilder> {
-  Color chosenColor = AppColorUtils.priorityColorMap[0]!;
+  late Color chosenColor =
+      AppColorUtils.priorityColorMap[widget.predefinedColorIndex]!;
 
   @override
   Widget build(BuildContext context) {

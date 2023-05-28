@@ -12,6 +12,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+const _bottomPadding = 16.0;
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     Key? key,
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
           statusBarBrightness: Brightness.light,
         ),
       ),
-      body: BlocConsumer<HomeBloc, HomeState>(
+      body: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
           if (state is HomeExceedingRangeState) {
             AppUtils.showSnackBar(
@@ -55,56 +57,73 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
         },
-        buildWhen: (previousState, newState) {
-          return newState is! HomeExceedingRangeState;
-        },
-        builder: (_, state) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(width: 28),
-                    ChosenDayHeader(day: vm.selectedDay),
-                    Material(
-                      child: InkWell(
-                        onTap: () {},
-                        child: SvgPicture.asset(AppIcons.notification),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          child: Column(
+            children: [
+              BlocBuilder<HomeBloc, HomeState>(
+                builder: (_, __) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const SizedBox(width: 28),
+                          ChosenDayHeader(day: vm.selectedDay),
+                          Material(
+                            child: InkWell(
+                              onTap: () {},
+                              child: SvgPicture.asset(AppIcons.notification),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 35),
+                      CalendarHeader(
+                        currentMonth: vm.focusedDay,
+                        onPreviousPage: vm.previousMonth,
+                        onNextPage: vm.nextMonth,
+                      ),
+                      const SizedBox(height: 16),
+                      CalendarBody(
+                        focusedMonthDays: vm.focusedMonthDays,
+                        selectedDay: vm.selectedDay,
+                        onSelectDay: (ctx, day) => vm.selectDay(
+                          context: ctx,
+                          chosenDay: day,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+              const SizedBox(height: 28),
+              Expanded(
+                child: BlocBuilder<HomeBloc, HomeState>(
+                  buildWhen: (_, newState) {
+                    return newState is HomeSelectDayState;
+                  },
+                  builder: (_, state) {
+                    final events = (state as HomeSelectDayState).events;
+                    return EventsList(
+                      events: events,
+                      onAddEvent: vm.onAddEvent,
+                      onEditEvent: (context, event) => vm.onEditEvent(
+                        context: context,
+                        event: event,
+                      ),
+                    );
+                  },
                 ),
-                const SizedBox(height: 35),
-                CalendarHeader(
-                  currentMonth: vm.focusedDay,
-                  onPreviousPage: vm.previousMonth,
-                  onNextPage: vm.nextMonth,
-                ),
-                const SizedBox(height: 16),
-                CalendarBody(
-                  focusedMonthDays: vm.focusedMonthDays,
-                  selectedDay: vm.selectedDay,
-                  onSelectDay: (ctx, day) => vm.selectDay(
-                    context: ctx,
-                    chosenDay: day,
-                  ),
-                ),
-                const SizedBox(height: 28),
-                Expanded(
-                  child: EventsList(
-                    events: (state as HomeSelectDayState).events,
-                    onAddEvent: vm.onAddEvent,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).viewPadding.bottom + 16,
-                ),
-              ],
-            ),
-          );
-        },
+              ),
+              SizedBox(
+                height:
+                    MediaQuery.of(context).viewPadding.bottom + _bottomPadding,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

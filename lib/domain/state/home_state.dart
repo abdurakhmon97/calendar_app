@@ -20,6 +20,17 @@ class HomeSelectDayState extends HomeState {
       ];
 }
 
+class HomeChangeMonthState extends HomeState {
+  final DateTime newMonth;
+
+  const HomeChangeMonthState({
+    required this.newMonth,
+  });
+
+  @override
+  List<Object> get props => [newMonth];
+}
+
 class HomeExceedingRangeState extends HomeState {
   @override
   List<Object> get props => [];

@@ -12,6 +12,7 @@ class AppIcons {
   static const location = '$_icons/ic_location.svg';
   static const time = '$_icons/ic_time.svg';
   static const chevronDown = '$_icons/ic_chevron_down.svg';
+  static const edit = '$_icons/ic_edit.svg';
 }
 
 class AppImages {

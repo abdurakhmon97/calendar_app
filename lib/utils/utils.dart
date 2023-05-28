@@ -29,4 +29,11 @@ class AppUtils {
       backgroundColor: bgColor,
     ));
   }
+
+  static String emptyField(String prefilledText) {
+    if (prefilledText.isEmpty) {
+      return 'Not specified';
+    }
+    return prefilledText;
+  }
 }
