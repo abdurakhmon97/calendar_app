@@ -1,6 +1,8 @@
 import 'package:calendar_app/app/navigation/app_route.dart';
 import 'package:calendar_app/app/navigation/arguments/event_add_or_edit_arguments.dart';
+import 'package:calendar_app/app/navigation/arguments/event_details_screen_arguments.dart';
 import 'package:calendar_app/app/ui/event_add_or_edit/event_add_or_edit_screen.dart';
+import 'package:calendar_app/app/ui/event_details/event_details_screen.dart';
 import 'package:calendar_app/app/ui/home/home_screen.dart';
 import 'package:calendar_app/app/ui/home/home_screen_vm.dart';
 import 'package:calendar_app/app/ui/splash/splash_screen.dart';
@@ -29,6 +31,14 @@ final appRouter = GoRouter(
           builder: (_, state) {
             return EventAddOrEditScreen(
               arguments: state.extra as EventAddOrEditArguments,
+            );
+          },
+        ),
+        GoRoute(
+          path: AppRoute.eventDetails,
+          builder: (_, state) {
+            return EventDetailsScreen(
+              arguments: state.extra as EventDetailsScreenArguments,
             );
           },
         ),

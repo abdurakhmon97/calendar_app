@@ -105,6 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     return newState is HomeSelectDayState;
                   },
                   builder: (_, state) {
+                    if (state is HomeInitialState) {
+                      return const SizedBox.shrink();
+                    }
                     final events = (state as HomeSelectDayState).events;
                     return EventsList(
                       events: events,

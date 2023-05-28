@@ -12,12 +12,18 @@ class AppTypography {
     fontWeight: FontWeight.w400,
   );
 
+  static final textSmallWhite =
+      textSmall.copyWith(color: AppColors.contrastWhite);
+
   static const textRegular = TextStyle(
     height: 15.0 / 10.0,
     fontSize: 10.0,
     color: AppColors.primaryText,
     fontWeight: FontWeight.w400,
   );
+
+  static final textRegularSecondary =
+      textRegular.copyWith(color: AppColors.secondaryText);
 
   static const textSemiBold = TextStyle(
     height: 15.0 / 10.0,
@@ -29,12 +35,19 @@ class AppTypography {
   static final textSemiBoldWhite =
       textSemiBold.copyWith(color: AppColors.contrastWhite);
 
-  static const captionSemiBold = TextStyle(
+  static const caption = TextStyle(
     height: 21.0 / 14.0,
     fontSize: 14.0,
     color: AppColors.primaryText,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
   );
+
+  static final captionMedium = caption.copyWith(fontWeight: FontWeight.w500);
+
+  static final captionMediumWhite =
+      captionMedium.copyWith(color: AppColors.contrastWhite);
+
+  static final captionSemiBold = caption.copyWith(fontWeight: FontWeight.w600);
 
   static const caption2 = TextStyle(
     height: 18.0 / 12.0,
@@ -64,6 +77,11 @@ class AppTypography {
     fontWeight: FontWeight.w500,
   );
 
+  static final title3SemiBold = title3.copyWith(fontWeight: FontWeight.w600);
+
+  static final title3SemiBoldWhite =
+      title3.copyWith(color: AppColors.contrastWhite);
+
   static final title3Secondary =
       title3.copyWith(color: AppColors.secondaryText);
 
@@ -83,9 +101,17 @@ class AppTypography {
     fontFamily: GoogleFonts.roboto().fontFamily,
   );
 
+  static final body1Poppins = body1.copyWith(
+    fontFamily: GoogleFonts.poppins().fontFamily,
+  );
+
+  static final body1PoppinsCaption =
+      body1Poppins.copyWith(color: AppColors.captionText);
+
   static final body1White = body1.copyWith(color: AppColors.contrastWhite);
 
   static final body1SemiBold = body1.copyWith(fontWeight: FontWeight.w600);
 
-  static final body1SemiBoldWhite = body1SemiBold.copyWith(color: AppColors.contrastWhite);
+  static final body1SemiBoldWhite =
+      body1SemiBold.copyWith(color: AppColors.contrastWhite);
 }

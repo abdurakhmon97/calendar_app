@@ -42,6 +42,7 @@ class CalendarAppButton extends StatelessWidget {
           child: icon != null
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     icon!,
                     const SizedBox(width: 2),

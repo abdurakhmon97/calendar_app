@@ -8,12 +8,14 @@ class AppColors {
   static const secondaryBgColor = Color(0xFFE5E5E5);
   static const arrowBtnBg = Color(0xFFEFEFEF);
   static const textFieldBg = Color(0xFFF3F4F6);
+  static const deleteBtnBg = Color(0xFFFEE8E9);
 
   static const success = Colors.green;
   static const error = Colors.red;
 
   static const Color primaryText = Color(0xFF292929);
   static const Color secondaryText = Color(0xFF969696);
+  static const Color captionText = Color(0xFF7C7B7B);
   static const Color contrastWhite = Color(0xFFFFFFFF);
   static const Color robotoPrimaryText = Color(0xFF111827);
 

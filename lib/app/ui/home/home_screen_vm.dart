@@ -1,6 +1,8 @@
 import 'package:calendar_app/app/navigation/app_route.dart';
 import 'package:calendar_app/app/navigation/arguments/event_add_or_edit_arguments.dart';
+import 'package:calendar_app/app/navigation/arguments/event_details_screen_arguments.dart';
 import 'package:calendar_app/app/ui/event_add_or_edit/event_add_or_edit_vm.dart';
+import 'package:calendar_app/app/ui/event_details/event_details_vm.dart';
 import 'package:calendar_app/domain/bloc/home_bloc.dart';
 import 'package:calendar_app/domain/entities/event_details_entity.dart';
 import 'package:calendar_app/utils/utils.dart';
@@ -85,11 +87,10 @@ class HomeScreenViewModel {
     required EventDetailsEntity event,
   }) async {
     final eventUpdated = await context.push(
-      '${AppRoute.home}${AppRoute.eventAddOrEdit}',
-      extra: EventAddOrEditArguments(
-        vm: EventAddOrEditViewModel(),
+      '${AppRoute.home}${AppRoute.eventDetails}',
+      extra: EventDetailsScreenArguments(
+        vm: EventDetailsViewModel(event),
         chosenDay: selectedDay,
-        eventToEdit: event,
       ),
     );
     if (eventUpdated == true) {

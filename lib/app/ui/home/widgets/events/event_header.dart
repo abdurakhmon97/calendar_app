@@ -14,7 +14,7 @@ class EventHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
+        Text(
           'Schedule',
           style: AppTypography.captionSemiBold,
         ),

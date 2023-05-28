@@ -10,11 +10,7 @@ part '../event/home_event.dart';
 part '../state/home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc(this._eventsRepository)
-      : super(HomeSelectDayState(
-          selectedDay: DateTime.now(),
-          events: const [],
-        )) {
+  HomeBloc(this._eventsRepository) : super(HomeInitialState()) {
     on<HomeSelectDayEvent>(_onDaySelected);
     on<HomeChangeMonthEvent>(_onChangeMonth);
     on<HomeExceedingRangeEvent>(_onRangeExceeded);

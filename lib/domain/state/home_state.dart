@@ -4,6 +4,11 @@ abstract class HomeState extends Equatable {
   const HomeState();
 }
 
+class HomeInitialState extends HomeState {
+  @override
+  List<Object?> get props => [];
+}
+
 class HomeSelectDayState extends HomeState {
   final DateTime selectedDay;
   final List<EventDetailsEntity> events;
