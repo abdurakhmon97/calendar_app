@@ -42,6 +42,14 @@ class AppTypography {
     fontWeight: FontWeight.w500,
   );
 
+  static final TextStyle caption2SemiBold = caption2.copyWith(
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle caption2SemiBoldWhite = caption2SemiBold.copyWith(
+    color: AppColors.contrastWhite,
+  );
+
   static final caption2Secondary =
       caption2.copyWith(color: AppColors.secondaryText);
 

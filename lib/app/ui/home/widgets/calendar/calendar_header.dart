@@ -14,8 +14,8 @@ class CalendarHeader extends StatelessWidget {
   }) : super(key: key);
 
   final DateTime currentMonth;
-  final VoidCallback onPreviousPage;
-  final VoidCallback onNextPage;
+  final Function(BuildContext) onPreviousPage;
+  final Function(BuildContext) onNextPage;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CalendarHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              DateFormat('MMMM').format(currentMonth),
+              DateFormat('MMMM y').format(currentMonth),
               style: AppTypography.captionSemiBold,
             ),
             Row(
@@ -57,13 +57,13 @@ class _CircleArrow extends StatelessWidget {
   }) : super(key: key);
 
   final SvgPicture icon;
-  final VoidCallback onTap;
+  final Function(BuildContext) onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: onTap,
+      onTap: () => onTap(context),
       child: Container(
         height: 23,
         width: 23,
