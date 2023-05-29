@@ -13,6 +13,7 @@ part '../state/edit_or_add_state.dart';
 class EditOrAddBloc extends Bloc<EditOrAddEvent, EditOrAddState> {
   EditOrAddBloc() : super(EditOrAddInitial()) {
     on<AddNewEvent>(_onAddNewEvent);
+    on<UpdateEvent>(_onUpdateEvent);
   }
 
   final EventsRepository _eventsRepository = inject();
@@ -21,5 +22,11 @@ class EditOrAddBloc extends Bloc<EditOrAddEvent, EditOrAddState> {
       AddNewEvent event, Emitter<EditOrAddState> emit) async {
     await _eventsRepository.createNewEvent(event.event);
     emit(AddNewEventState());
+  }
+
+  FutureOr<void> _onUpdateEvent(
+      UpdateEvent event, Emitter<EditOrAddState> emit) async {
+    await _eventsRepository.updateEvent(event.event);
+    emit(UpdateEventState(event.event));
   }
 }

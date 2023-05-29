@@ -16,7 +16,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeExceedingRangeEvent>(_onRangeExceeded);
   }
 
-  //we can also create home bloc outside of material app, and inject the constructor instead of field
   final EventsRepository _eventsRepository;
 
   FutureOr<void> _onDaySelected(

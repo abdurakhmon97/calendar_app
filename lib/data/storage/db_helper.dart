@@ -64,12 +64,11 @@ class DatabaseHelper {
   Future<void> delete(int id) async =>
       await _database!.rawDelete("DELETE from $_tableName where id=$id");
 
-  Future<dynamic> update({
-    required String table,
+  Future<void> update({
     required EventDetails eventDetails,
   }) async =>
       await _database!.update(
-        table,
+        _tableName,
         eventDetails.toJson(),
         where: 'id = ?',
         whereArgs: [eventDetails.id],

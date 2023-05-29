@@ -3,6 +3,7 @@ import 'package:calendar_app/app/navigation/arguments/event_add_or_edit_argument
 import 'package:calendar_app/app/navigation/arguments/event_details_screen_arguments.dart';
 import 'package:calendar_app/app/ui/event_add_or_edit/event_add_or_edit_vm.dart';
 import 'package:calendar_app/app/ui/event_details/event_details_vm.dart';
+import 'package:calendar_app/core/constants/colors.dart';
 import 'package:calendar_app/domain/bloc/home_bloc.dart';
 import 'package:calendar_app/domain/entities/event_details_entity.dart';
 import 'package:calendar_app/utils/utils.dart';
@@ -20,8 +21,8 @@ class HomeScreenViewModel {
   List<DateTime> focusedMonthDays = [];
 
   //can be customized here
-  final startYear = DateTime.now().year;
-  final endYear = DateTime.now().year;
+  final _startYear = DateTime.now().year;
+  final _endYear = DateTime.now().year;
 
   void init(BuildContext context) {
     focusedMonthDays = _getDaysOfMonth(selectedDay);
@@ -38,8 +39,12 @@ class HomeScreenViewModel {
 
   void nextMonth(BuildContext context) {
     final newFocusedDay = DateTime(focusedDay.year, focusedDay.month + 1, 15);
-    if (newFocusedDay.year > endYear) {
-      context.read<HomeBloc>().add(HomeExceedingRangeEvent());
+    if (newFocusedDay.year > _endYear) {
+      AppUtils.showSnackBar(
+        context,
+        'Max year must be $_endYear',
+        AppColors.error,
+      );
       return;
     }
     focusedDay = newFocusedDay;
@@ -49,8 +54,12 @@ class HomeScreenViewModel {
 
   void previousMonth(BuildContext context) {
     final newFocusedDay = DateTime(focusedDay.year, focusedDay.month - 1, 15);
-    if (newFocusedDay.year < startYear) {
-      context.read<HomeBloc>().add(HomeExceedingRangeEvent());
+    if (newFocusedDay.year < _startYear) {
+      AppUtils.showSnackBar(
+        context,
+        'Least year must be $_startYear',
+        AppColors.error,
+      );
       return;
     }
     focusedDay = newFocusedDay;
@@ -68,34 +77,24 @@ class HomeScreenViewModel {
     return days;
   }
 
-  void onAddEvent(BuildContext context) async {
-    final eventAdded = await context.push(
-      '${AppRoute.home}${AppRoute.eventAddOrEdit}',
-      extra: EventAddOrEditArguments(
-        vm: EventAddOrEditViewModel(),
-        chosenDay: selectedDay,
-      ),
-    );
-    if (eventAdded == true) {
-      //ignore: use_build_context_synchronously
-      AppUtils.showSnackBar(context, 'Event added successfully');
-    }
-  }
+  void onAddEvent(BuildContext context) => context.push(
+        '${AppRoute.home}${AppRoute.eventAddOrEdit}',
+        extra: EventAddOrEditArguments(
+          vm: EventAddOrEditViewModel(),
+          chosenDay: selectedDay,
+        ),
+      );
 
   void onEditEvent({
     required BuildContext context,
     required EventDetailsEntity event,
-  }) async {
-    final eventUpdated = await context.push(
+  }) {
+    context.push(
       '${AppRoute.home}${AppRoute.eventDetails}',
       extra: EventDetailsScreenArguments(
         vm: EventDetailsViewModel(event),
         chosenDay: selectedDay,
       ),
     );
-    if (eventUpdated == true) {
-      //ignore: use_build_context_synchronously
-      AppUtils.showSnackBar(context, 'Event updated successfully');
-    }
   }
 }

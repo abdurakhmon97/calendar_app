@@ -12,3 +12,12 @@ class AddNewEvent extends EditOrAddEvent {
   @override
   List<Object> get props => [event];
 }
+
+class UpdateEvent extends EditOrAddEvent {
+  final EventDetailsEntity event;
+
+  const UpdateEvent(this.event);
+
+  @override
+  List<Object> get props => [event];
+}

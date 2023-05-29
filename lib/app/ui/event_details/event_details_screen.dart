@@ -4,9 +4,11 @@ import 'package:calendar_app/app/ui/widgets/calendar_app_button.dart';
 import 'package:calendar_app/core/constants/assets.dart';
 import 'package:calendar_app/core/constants/colors.dart';
 import 'package:calendar_app/core/constants/typography.dart';
+import 'package:calendar_app/domain/bloc/event_details_bloc.dart';
 import 'package:calendar_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 const _bottomPadding = 28.0;
@@ -28,73 +30,90 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 0,
-        backgroundColor: AppColorUtils.priorityColorMap[vm.event.priorityColor],
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.dark,
-        ),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ScreenHeader(
-            event: vm.event,
-            onEdit: () {},
-            onBackTap: () {},
+    return BlocProvider(
+      create: (_) => EventDetailsBloc(),
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 0,
+          backgroundColor:
+              AppColorUtils.priorityColorMap[vm.event.priorityColor],
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.dark,
           ),
-          const SizedBox(height: 28),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 28),
-            child: Column(
+        ),
+        body: BlocBuilder<EventDetailsBloc, EventDetailsState>(
+          builder: (_, __) {
+            print('rebuilt again');
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Reminder',
-                  style: AppTypography.body1Poppins,
+                ScreenHeader(
+                  event: vm.event,
+                  onEdit: () => vm.onEditEvent(
+                    context: context,
+                    chosenDay: widget.arguments.chosenDay,
+                  ),
+                  onBackTap: () => vm.onBackTap(context),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  vm.event.reminder == 0
-                      ? 'No reminder is set'
-                      : '${vm.event.reminder} minute(s) before',
-                  style: AppTypography.body1PoppinsCaption,
+                const SizedBox(height: 28),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Reminder',
+                        style: AppTypography.body1Poppins,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        vm.event.reminder == 0
+                            ? 'No reminder is set'
+                            : '${vm.event.reminder} minute(s) before',
+                        style: AppTypography.body1PoppinsCaption,
+                      ),
+                      const SizedBox(height: 22),
+                      Text(
+                        'Description',
+                        style: AppTypography.body1Poppins,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        AppUtils.emptyField(vm.event.description),
+                        style: AppTypography.textRegularSecondary,
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 22),
-                Text(
-                  'Description',
-                  style: AppTypography.body1Poppins,
+                const Spacer(),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 28),
+                  child: CalendarAppButton(
+                    title: Text(
+                      'Delete Event',
+                      style: AppTypography.captionSemiBold,
+                    ),
+                    icon: SvgPicture.asset(AppIcons.delete),
+                    onPressed: () => vm.onDeleteEvent(
+                      context: context,
+                      selectedDay: widget.arguments.chosenDay,
+                    ),
+                    backgroundColor: AppColors.deleteBtnBg,
+                    height: _buttonHeight,
+                    borderRadius: 10,
+                  ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  AppUtils.emptyField(vm.event.description),
-                  style: AppTypography.textRegularSecondary,
+                SizedBox(
+                  height: MediaQuery.of(context).viewPadding.bottom +
+                      _bottomPadding,
                 ),
               ],
-            ),
-          ),
-          const Spacer(),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 28),
-            child: CalendarAppButton(
-              title: Text(
-                'Delete Event',
-                style: AppTypography.captionSemiBold,
-              ),
-              icon: SvgPicture.asset(AppIcons.delete),
-              onPressed: () {},
-              backgroundColor: AppColors.deleteBtnBg,
-              height: _buttonHeight,
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).viewPadding.bottom + _bottomPadding,
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }

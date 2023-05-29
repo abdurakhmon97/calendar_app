@@ -27,6 +27,8 @@ class EventAddOrEditScreen extends StatefulWidget {
 
 class _EventAddOrEditScreenState extends State<EventAddOrEditScreen> {
   late final vm = widget.arguments.vm;
+  late final bool isEdit = widget.arguments.eventToEdit != null;
+  late final DateTime selectedDay = widget.arguments.chosenDay;
 
   @override
   void initState() {
@@ -100,25 +102,29 @@ class _EventAddOrEditScreenState extends State<EventAddOrEditScreen> {
                 textInputAction: TextInputAction.done,
               ),
               const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: Builder(
-                  builder: (ctx) {
-                    return CalendarAppButton(
-                      onPressed: () => vm.createEvent(
-                        context: ctx,
-                        selectedDay: widget.arguments.chosenDay,
-                      ),
+              BlocBuilder<EditOrAddBloc, EditOrAddState>(
+                builder: (context, _) {
+                  return SizedBox(
+                    width: double.infinity,
+                    child: CalendarAppButton(
+                      onPressed: () => isEdit
+                          ? vm.updateEvent(
+                              context: context,
+                              selectedDay: selectedDay,
+                              eventId: widget.arguments.eventToEdit!.id!,
+                            )
+                          : vm.createEvent(
+                              context: context,
+                              selectedDay: selectedDay,
+                            ),
                       height: _buttonHeight,
                       title: Text(
-                        widget.arguments.eventToEdit == null
-                            ? 'Add'
-                            : 'Update',
+                        isEdit ? 'Update' : 'Add',
                         style: AppTypography.body1White,
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
               //button height and extra 16px from bottom
               SizedBox(

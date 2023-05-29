@@ -54,7 +54,37 @@ class EventAddOrEditViewModel {
           ),
         );
     context.read<HomeBloc>().add(HomeSelectDayEvent(selectedDay));
-    context.pop(true);
+    AppUtils.showSnackBar(context, 'Event added successfully');
+    context.pop();
+  }
+
+  void updateEvent({
+    required BuildContext context,
+    required DateTime selectedDay,
+    required int eventId,
+  }) {
+    if (nameController.text.isEmpty || timeController.text.isEmpty) {
+      AppUtils.showSnackBar(
+        context,
+        'Name and time must be specified',
+        AppColors.error,
+      );
+      return;
+    }
+    final event = EventDetailsEntity(
+      id: eventId,
+      name: nameController.text,
+      time: timeController.text,
+      location: locationController.text,
+      priorityColor: priorityColor,
+      description: descriptionController.text,
+      reminder: reminder.inMinutes,
+      date: selectedDay.toString(),
+    );
+    context.read<EditOrAddBloc>().add(UpdateEvent(event));
+    context.read<HomeBloc>().add(HomeSelectDayEvent(selectedDay));
+    AppUtils.showSnackBar(context, 'Event updated successfully');
+    context.pop(event);
   }
 
   void changePriorityColor(int index) => priorityColor = index;

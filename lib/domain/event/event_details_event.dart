@@ -5,12 +5,12 @@ abstract class EventDetailsEvent extends Equatable {
 }
 
 class EditEvent extends EventDetailsEvent {
-  final EventDetailsEntity eventDetailsEntity;
+  final EventDetailsEntity event;
 
-  const EditEvent(this.eventDetailsEntity);
+  const EditEvent(this.event);
 
   @override
-  List<Object?> get props => [eventDetailsEntity];
+  List<Object?> get props => [event];
 }
 
 class DeleteEvent extends EventDetailsEvent {

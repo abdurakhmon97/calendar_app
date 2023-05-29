@@ -35,4 +35,23 @@ class EventsRepositoryImpl implements EventsRepository {
       log(e.toString());
     }
   }
+
+  @override
+  Future<void> updateEvent(EventDetailsEntity eventDetailsEntity) async {
+    try {
+      await _databaseHelper.update(
+          eventDetails: eventDetailsEntity.toRawData());
+    } on Object catch (e) {
+      log(e.toString());
+    }
+  }
+
+  @override
+  Future<void> deleteEvent(int id) async {
+    try {
+      await _databaseHelper.delete(id);
+    } on Object catch (e) {
+      log(e.toString());
+    }
+  }
 }
