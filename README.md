@@ -1,19 +1,8 @@
 # calendar_app
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-flutter packages pub run build_runner build --delete-conflicting-outputs
+Steps to run this project
+1)First of all, make sure to use flutter 3.7.11 (packages are almost up to date with this version)
+2)Run inside terminal in the root of project "flutter pub get"
+3)Next, run "flutter packages pub run build_runner build --delete-conflicting-outputs" in order to generate all needed handy code
+4)Enjoy the application
 
